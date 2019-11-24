@@ -20,7 +20,7 @@ resource "null_resource" "execute" {
 }
 
 data "external" "loader" {
-  program = ["/bin/bash", "${path.module}/wrapper.sh"]
+  program = ["/bin/bash", "${path.module}/bin/wrapper.sh"]
 }
 
 locals {
