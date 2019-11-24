@@ -20,7 +20,7 @@ resource "null_resource" "execute" {
 }
 
 data "external" "loader" {
-  program = ["/bin/bash", "${path.module}/cboot.sh"]
+  program = ["/bin/bash", "${path.module}/wrapper.sh"]
 }
 
 locals {
