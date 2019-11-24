@@ -1,0 +1,11 @@
+{
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "50m",
+    "max-file": "10"
+  },
+  "storage-driver": "overlay2",
+  "insecure-registries" : ["registry:1999"],
+  "registry-mirrors": ["http://registry:${registry_mirror_port}"],
+  "labels": ["node-name=${node_name}"]
+}

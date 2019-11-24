@@ -1,0 +1,23 @@
+This is boiler plate code / structure to enforce execution order between Terraform modules
+
+If you want module B to execute after A:
+    - set B.wait_for to [ A.status_done ] e.g.
+      module "B" {
+        source   = "./path-to-module"
+        wait_for = [ module.A.status_done ]
+      }
+
+If you want module B to execute if A becomes tainted / is replaced
+    - set B.wait_for_taint to [ A.status_done ] e.g.
+      module "B" {
+        source         = "./path-to-module"
+        wait_for_taint = [ module.A.status_done ]
+      }
+
+If you want resource B to execute if module A becomes tainted / is replaced
+    - add [ A.status_done ] to B triggers section e.g.
+      resource "null_resource" "main" {
+        triggers = {
+          lastmod = sha1(module.file-parser.status_done)
+        }
+      }
