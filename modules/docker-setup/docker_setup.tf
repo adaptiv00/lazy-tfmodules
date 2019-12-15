@@ -24,7 +24,9 @@ resource "null_resource" "docker_setup" {
   }
 
   provisioner "file" {
-    source      = "${path.module}/config/docker.conf"
+    content     = templatefile("${path.module}/config/docker.conf.tmpl", {
+      api_host  = element(var.private_ips, count.index)
+    })
     destination = "/tmp/docker.conf"
   }
 

@@ -10,6 +10,7 @@ variable "node_count" {
 
 variable "node_names" {}
 variable "public_ips" {}
+variable "private_ips" {}
 variable "app_user" {}
 variable "docker_version" {
   description = "Docker version to install"
